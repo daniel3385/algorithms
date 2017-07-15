@@ -14,7 +14,7 @@ void List::addToHead(int value) {
 void List::addToTail(int value) {
 	node *temp = new node;
 	temp->data = value;
-    temp->next = NULL;
+	temp->next = NULL;
 	if(head == NULL) {
 		head = temp;
 		tail = temp;
