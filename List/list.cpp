@@ -5,9 +5,9 @@ int List::numberOfNodes = 0;
 
 void List::addToHead(int value) {
 	node *temp=new node;
-    temp->data=value;
-    temp->next=head;
-    head=temp;
+	temp->data=value;
+	temp->next=head;
+	head=temp;
 	numberOfNodes++;
 }
 
