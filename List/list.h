@@ -1,6 +1,5 @@
 #ifndef LIST_H
-	#define LIST_H
-#endif
+#define LIST_H
 
 #include <iostream>
 
@@ -19,3 +18,4 @@ class List{
         void toString(void);
 };
 
+#endif
