@@ -26,12 +26,33 @@ void List::addToTail(int value) {
 	numberOfNodes++;
 }
 
+int List::deleteNth(int position) {
+	if(position > numberOfNodes || position < 1)
+		return 0;
+    if(position == 1) {
+		node *tmp = head;
+		head = head->next;
+		delete(tmp);
+	} else {
+		node *runner  = head;
+		while(--position > 1)
+			runner = runner->next;
+		node *tmp = runner->next;
+		runner->next = runner->next->next;
+		if(runner->next == NULL)
+			tail = runner;
+		delete(tmp);
+	}
+	numberOfNodes--;
+	return 1;
+}
+
 void List::toString() {
-	node *temp = new node;
-	temp=head;
-	while(temp!=NULL) {
-		std::cout << temp->data <<"\t";
-		temp = temp->next;
+	node *runner = new node;
+	runner=head;
+	while(runner!=NULL) {
+		std::cout << runner->data <<"\t";
+		runner = runner->next;
 	}
 	std::cout << std::endl;
 }

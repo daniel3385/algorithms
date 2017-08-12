@@ -15,6 +15,7 @@ class List{
     public:
         void addToTail(int value);
         void addToHead(int value);
+        int  deleteNth(int);
         void toString(void);
 };
 
