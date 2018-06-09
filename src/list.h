@@ -7,15 +7,15 @@ class List{
     private:
         struct node{
             int data;
+            node *prev;
             node *next;
         };
         node *head = NULL;
         node *tail = NULL;
-        static int numberOfNodes;
     public:
-        void addToTail(int value);
-        void addToHead(int value);
-        int  deleteNth(int);
+        void addToTail(int);
+        void addToHead(int);
+        int  deleteNode(node *nodeToDelete);
         void toString(void);
 };
 

@@ -1,58 +1,60 @@
 #include <iostream>
 #include "list.h"
 
-int List::numberOfNodes = 0;
 
 void List::addToHead(int value) {
-	node *temp=new node;
-	temp->data=value;
-	temp->next=head;
-	head=temp;
-	numberOfNodes++;
+    node *newNodePtr = new node;
+    newNodePtr->data = value;
+    if(tail == NULL) {
+	// it is the first node
+        tail = newNodePtr;
+        head = newNodePtr;
+    } else {
+        newNodePtr->next = head;
+        head->prev = newNodePtr;
+        head = newNodePtr;
+    }
 }
 
 void List::addToTail(int value) {
-	node *temp = new node;
-	temp->data = value;
-	temp->next = NULL;
-	if(head == NULL) {
-		head = temp;
-		tail = temp;
-		temp = NULL;
+    node *newNodePtr = new node;
+    newNodePtr->data = value;
+    newNodePtr->next = NULL;
+    if(head == NULL) {
+	head = newNodePtr;
+	tail = newNodePtr;
     } else {	
-        tail->next = temp;
-        tail = temp;
+	tail->next = newNodePtr;
+	tail = newNodePtr;
     }
-	numberOfNodes++;
 }
 
-int List::deleteNth(int position) {
-	if(position > numberOfNodes || position < 1)
-		return 0;
-    if(position == 1) {
-		node *tmp = head;
-		head = head->next;
-		delete(tmp);
-	} else {
-		node *runner  = head;
-		while(--position > 1)
-			runner = runner->next;
-		node *tmp = runner->next;
-		runner->next = runner->next->next;
-		if(runner->next == NULL)
-			tail = runner;
-		delete(tmp);
-	}
-	numberOfNodes--;
-	return 1;
+int List::deleteNode(node *nodeToDeletePtr) {
+   if(nodeToDeletePtr == tail) {
+	nodeToDeletePtr->data = tail->data;
+        node *tmp = new node;
+        tmp = tail;
+        tail = tail->prev;
+        tail->next = NULL;
+        delete tmp;
+    } else if(nodeToDeletePtr == head) {
+	nodeToDeletePtr->data = head->data;
+        node *tmp = new node;
+        tmp = head;
+        head->next->prev = NULL;
+        head = head->next;
+        delete tmp;
+    } else {
+        // FIXME: this else is broken
+    }
 }
 
 void List::toString() {
-	node *runner = new node;
-	runner=head;
-	while(runner!=NULL) {
-		std::cout << runner->data <<"\t";
-		runner = runner->next;
-	}
-	std::cout << std::endl;
+    node *runner = new node;
+    runner=head;
+    while(runner!=NULL) {
+	std::cout << runner->data <<"\t";
+	runner = runner->next;
+    }
+    std::cout << std::endl;
 }

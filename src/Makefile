@@ -1,6 +1,6 @@
 all:
 	g++ -c list.cpp
-	g++ -c example.cpp
-	g++ list.o example.o
+	g++ -c exampleList.cpp
+	g++ list.o example.o -o exampleList
 clean:
-	rm *.o a.out
+	rm *.o exampleList
