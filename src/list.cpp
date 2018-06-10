@@ -29,28 +29,24 @@ void List::addToTail(int value) {
     }
 }
 
-int List::deleteNode(node *nodeToDeletePtr) {
+void List::deleteNode(node *nodeToDeletePtr) {
    if(nodeToDeletePtr == tail) {
-	nodeToDeletePtr->data = tail->data;
-        node *tmp = new node;
-        tmp = tail;
+	nodeToDeletePtr = tail;
         tail = tail->prev;
         tail->next = NULL;
-        delete tmp;
+	delete nodeToDeletePtr;
     } else if(nodeToDeletePtr == head) {
-	nodeToDeletePtr->data = head->data;
-        node *tmp = new node;
-        tmp = head;
+	nodeToDeletePtr = head;
         head->next->prev = NULL;
         head = head->next;
-        delete tmp;
+	delete nodeToDeletePtr;
     } else {
         // FIXME: this else is broken
     }
 }
 
 void List::toString() {
-    node *runner = new node;
+    node *runner;
     runner=head;
     while(runner!=NULL) {
 	std::cout << runner->data <<"\t";

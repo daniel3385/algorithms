@@ -3,9 +3,11 @@
 
 #include <iostream>
 
-class List{
+class List
+{
     private:
-        struct node{
+        struct node
+	{
             int data;
             node *prev;
             node *next;
@@ -15,7 +17,7 @@ class List{
     public:
         void addToTail(int);
         void addToHead(int);
-        int  deleteNode(node *nodeToDelete);
+        void deleteNode(node *nodeToDelete);
         void toString(void);
 };
 
